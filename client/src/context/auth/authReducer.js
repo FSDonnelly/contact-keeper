@@ -11,7 +11,15 @@ import {
 
 export default (state, { type, payload }) => {
   switch (type) {
+    case USER_LOADED:
+      return {
+        ...state,
+        isAuthenticated: true,
+        loading: false,
+        user: payload
+      };
     case REGISTER_SUCCESS:
+    case AUTH_ERROR:
       localStorage.setItem('token', payload.token);
       return {
         ...state,
